@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_jetbrains_academy_tests" default="compile.module.jetbrains_academy_tests">
+  <dirname property="module.jetbrains_academy_tests.basedir" file="${ant.file.module_jetbrains_academy_tests}"/>
+  
+  <property name="module.jdk.home.jetbrains_academy_tests" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.jetbrains_academy_tests" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.jetbrains_academy_tests" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.jetbrains_academy_tests" value="-encoding UTF-8 -source 13 -target 13 ${compiler.args}"/>
+  
+  <property name="jetbrains_academy_tests.output.dir" value="${module.jetbrains_academy_tests.basedir}/out/production/JetBrains Academy tests"/>
+  <property name="jetbrains_academy_tests.testoutput.dir" value="${module.jetbrains_academy_tests.basedir}/out/test/JetBrains Academy tests"/>
+  
+  <path id="jetbrains_academy_tests.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="jetbrains_academy_tests.module.production.classpath">
+    <path refid="${module.jdk.classpath.jetbrains_academy_tests}"/>
+  </path>
+  
+  <path id="jetbrains_academy_tests.runtime.production.module.classpath">
+    <pathelement location="${jetbrains_academy_tests.output.dir}"/>
+  </path>
+  
+  <path id="jetbrains_academy_tests.module.classpath">
+    <path refid="${module.jdk.classpath.jetbrains_academy_tests}"/>
+    <pathelement location="${jetbrains_academy_tests.output.dir}"/>
+  </path>
+  
+  <path id="jetbrains_academy_tests.runtime.module.classpath">
+    <pathelement location="${jetbrains_academy_tests.testoutput.dir}"/>
+    <pathelement location="${jetbrains_academy_tests.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.jetbrains_academy_tests">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.jetbrains_academy_tests">
+    <patternset refid="excluded.from.module.jetbrains_academy_tests"/>
+  </patternset>
+  
+  <path id="jetbrains_academy_tests.module.sourcepath">
+    <dirset dir="${module.jetbrains_academy_tests.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.jetbrains_academy_tests" depends="compile.module.jetbrains_academy_tests.production,compile.module.jetbrains_academy_tests.tests" description="Compile module JetBrains Academy tests"/>
+  
+  <target name="compile.module.jetbrains_academy_tests.production" depends="register.custom.compilers" description="Compile module JetBrains Academy tests; production classes">
+    <mkdir dir="${jetbrains_academy_tests.output.dir}"/>
+    <javac2 destdir="${jetbrains_academy_tests.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.jetbrains_academy_tests}/javac">
+      <compilerarg line="${compiler.args.jetbrains_academy_tests}"/>
+      <bootclasspath refid="jetbrains_academy_tests.module.bootclasspath"/>
+      <classpath refid="jetbrains_academy_tests.module.production.classpath"/>
+      <src refid="jetbrains_academy_tests.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.jetbrains_academy_tests"/>
+    </javac2>
+    
+    <copy todir="${jetbrains_academy_tests.output.dir}">
+      <fileset dir="${module.jetbrains_academy_tests.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.jetbrains_academy_tests.tests" depends="register.custom.compilers,compile.module.jetbrains_academy_tests.production" description="compile module JetBrains Academy tests; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.jetbrains_academy_tests" description="cleanup module">
+    <delete dir="${jetbrains_academy_tests.output.dir}"/>
+    <delete dir="${jetbrains_academy_tests.testoutput.dir}"/>
+  </target>
+</project>
