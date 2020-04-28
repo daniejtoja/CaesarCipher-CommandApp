@@ -62,57 +62,6 @@ public class Main {
                     }
                 }
 
-                /*switch(arg.data.isEmpty()) {
-                    case(true): {
-                        switch(arg.outFileName.isEmpty()) {
-                            case(true): {
-                                outputMessage = encodeOrDecode((arg.data), (arg.key), outputMessage, (arg.mode));
-                                System.out.println("-------------------------------\n\n\n\n\t"+outputMessage+"\n\n\n\n-------------------------------");
-                                break;
-                            }
-                            default: {
-                                try{
-                                    File inFile = new File(arg.inFileName);
-                                    Scanner scan = new Scanner(inFile);
-                                    outputMessage = encodeOrDecode(scan.nextLine(), arg.key, outputMessage, arg.mode);
-                                    File outFile = new File(arg.outFileName);
-                                    FileWriter writer = new FileWriter(outFile);
-                                    writer.write(outputMessage);
-                                    System.out.println("Done.");
-                                } catch (Exception e) {
-                                    System.out.println("Something went wrong");
-                                }
-                                break;
-                            }
-                        }
-                        break;
-                    }
-                    default: {
-                        switch(arg.outFileName.isEmpty()) {
-                            case(true): {
-                                outputMessage = encodeOrDecode((arg.data), (arg.key), outputMessage, (arg.mode));
-                                System.out.println("-------------------------------\n\n\n\n\t"+outputMessage+"\n\n\n\n-------------------------------");
-                                break;
-                            }
-                            default: {
-                                try{
-                                    outputMessage = encodeOrDecode(arg.data, arg.key, outputMessage, arg.mode);
-                                    File outFile = new File(arg.outFileName);
-                                    FileWriter writer = new FileWriter(outFile);
-                                    writer.write(outputMessage);
-                                    System.out.println("Done.");
-                                } catch (Exception e) {
-                                    System.out.println("Something went wrong");
-                                }
-                                break;
-                            }
-                        }
-
-                        break;
-                    }
-
-                }*/
-
             } else {
                 System.out.println("Idk what to do with this message.");
             }
